@@ -1,0 +1,24 @@
+{
+  "name": "docling-n8n-node",
+  "version": "1.0.0",
+  "description": "n8n community node for Docling Serve (document conversion REST API)",
+  "license": "MIT",
+  "keywords": [
+    "n8n-community-node-package",
+    "docling",
+    "document-conversion"
+  ],
+  "scripts": {
+    "lint": "node -c nodes/Docling/Docling.node.js && node -c credentials/DoclingApi.credentials.js"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/example/docling-n8n-node.git"
+  }
+}

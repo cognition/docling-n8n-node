@@ -1,0 +1,43 @@
+'use strict';
+
+class DoclingApi {
+	constructor() {
+		this.name = 'doclingApi';
+		this.displayName = 'Docling API';
+		this.documentationUrl = 'https://github.com/docling-project/docling-serve';
+		this.properties = [
+			{
+				displayName: 'Base URL',
+				name: 'baseUrl',
+				type: 'string',
+				default: '={{ $env.DOCLING_API_URL }}',
+				placeholder: 'http://docling:5001',
+				description:
+					'Docling Serve base URL (no trailing slash). Default: DOCLING_API_URL from the n8n environment.',
+				required: true,
+			},
+			{
+				displayName: 'API Key',
+				name: 'apiKey',
+				type: 'string',
+				typeOptions: {
+					password: true,
+				},
+				default: '',
+				description:
+					'Optional. When Docling Serve has DOCLING_SERVE_API_KEY set, send it as the X-Api-Key header.',
+			},
+		];
+		this.test = {
+			request: {
+				baseURL: '={{$credentials.baseUrl}}',
+				url: '/health',
+				method: 'GET',
+			},
+			rules: [{ type: 'responseSuccess' }],
+		};
+	}
+}
+
+module.exports = { DoclingApi };
+module.exports.DoclingApi = DoclingApi;

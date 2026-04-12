@@ -14,6 +14,7 @@ This repository is **standalone** and is **not** part of the Temakwe `vps-compos
 - **Utility · OpenAPI Spec** — `GET /openapi.json` (schema discovery).
 - Dropdowns for common [ConvertDocumentsRequestOptions](https://github.com/docling-project/docling-serve/blob/main/docs/usage.md) fields plus **Additional Options (JSON)** for full flexibility.
 - **Docling API** credential: base URL (e.g. `http://docling:5001`) and optional `X-Api-Key` when `DOCLING_SERVE_API_KEY` is set on the server.
+- Palette icon: official Docling logo ([`docs/assets/logo.svg`](https://github.com/docling-project/docling/blob/main/docs/assets/logo.svg)) shipped as `docling.svg` next to the node and credential files.
 
 ## Install (custom directory)
 
@@ -33,9 +34,11 @@ Expected layout:
 ```text
 custom/
   credentials/
+    docling.svg
     DoclingApi.credentials.js
   nodes/
     Docling/
+      docling.svg
       Docling.node.js
 ```
 

@@ -4,6 +4,10 @@ class DoclingApi {
 	constructor() {
 		this.name = 'doclingApi';
 		this.displayName = 'Docling API';
+		this.icon = {
+			light: 'file:docling.svg',
+			dark: 'file:docling.svg',
+		};
 		this.documentationUrl = 'https://github.com/docling-project/docling-serve';
 		this.properties = [
 			{
@@ -13,7 +17,7 @@ class DoclingApi {
 				default: '={{ $env.DOCLING_API_URL }}',
 				placeholder: 'http://docling:5001',
 				description:
-					'Docling Serve base URL (no trailing slash). Default: DOCLING_API_URL from the n8n environment.',
+					'Docling Serve root URL only (no /v1 suffix — paths are appended automatically). No trailing slash. Default: DOCLING_API_URL from the n8n environment.',
 				required: true,
 			},
 			{

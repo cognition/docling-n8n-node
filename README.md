@@ -4,6 +4,17 @@ MIT-licensed community nodes for [n8n](https://n8n.io/) that call [Docling Serve
 
 This repository is **standalone** and is **not** part of the Temakwe `vps-compose` project. Install the built files into your n8n `custom` directory (see your hosting docs).
 
+## Temakwe container images
+
+If you run Docling in Docker, published images use the **`temakwe/`** namespace, for example:
+
+| Image | Role |
+|-------|------|
+| `temakwe/docling-server` | Docling Serve — REST API and UI (default port **5001** inside the container). |
+| `temakwe/docling-mcp` | [docling-mcp](https://github.com/docling-project/docling-mcp) — MCP over HTTP streamable transport (typically port **8000**). |
+
+Point n8n credentials at the hostname and port where **`docling-server`** is reachable (for example `http://docling:5001` on a shared Docker network).
+
 ## Features
 
 - **Resource · Operation** UI similar to built-in integration nodes.

@@ -13,7 +13,16 @@ If you run Docling in Docker, published images use the **`temakwe/`** namespace,
 | `temakwe/docling-server` | Docling Serve — REST API and UI (default port **5001** inside the container). |
 | `temakwe/docling-mcp` | [docling-mcp](https://github.com/docling-project/docling-mcp) — MCP over HTTP streamable transport (typically port **8000**). |
 
-Point n8n credentials at the hostname and port where **`docling-server`** is reachable (for example `http://docling:5001` on a shared Docker network).
+Point n8n credentials at the hostname and port where **`docling-server`** is reachable, for example **`http://docling-server:5001`** when n8n uses the same Docker network as the [compose stack](../docker-compose.yml).
+
+### How this maps to the two Temakwe images
+
+| n8n component | Talks to | Base URL (typical) |
+|---------------|----------|--------------------|
+| **Docling** node (this package) | `temakwe/docling-server` — HTTP REST only | `http://docling-server:5001` |
+| **MCP Client Tool** (built-in n8n) | `temakwe/docling-mcp` — MCP streamable HTTP | `http://docling-mcp:8000/mcp` (confirm the path field matches your n8n MCP UI; the server listens on port **8000**). |
+
+The **Docling** community node does **not** use the MCP image; it only calls Docling Serve’s **`/v1/...`** endpoints. Run both containers if you need REST conversion workflows and MCP-based agent tools.
 
 ## Features
 
@@ -24,7 +33,7 @@ Point n8n credentials at the hostname and port where **`docling-server`** is rea
 - **Utility · Health** — `GET /health`.
 - **Utility · OpenAPI Spec** — `GET /openapi.json` (schema discovery).
 - Dropdowns for common [ConvertDocumentsRequestOptions](https://github.com/docling-project/docling-serve/blob/main/docs/usage.md) fields plus **Additional Options (JSON)** for full flexibility.
-- **Docling API** credential: base URL (e.g. `http://docling:5001`) and optional `X-Api-Key` when `DOCLING_SERVE_API_KEY` is set on the server.
+- **Docling API** credential: base URL (e.g. `http://docling-server:5001`) and optional `X-Api-Key` when `DOCLING_SERVE_API_KEY` is set on the server.
 - Palette icon: official Docling logo ([`docs/assets/logo.svg`](https://github.com/docling-project/docling/blob/main/docs/assets/logo.svg)) shipped as `docling.svg` next to the node and credential files.
 
 ## Install (custom directory)
@@ -36,7 +45,7 @@ Point n8n credentials at the hostname and port where **`docling-server`** is rea
 
 2. Restart n8n.
 
-3. In n8n, add credentials **Docling API** with base URL reachable from the n8n container (e.g. `http://docling:5001`).
+3. In n8n, add credentials **Docling API** with base URL reachable from the n8n container (e.g. `http://docling-server:5001` when using the [Temakwe compose file](../docker-compose.yml) and a shared network).
 
 4. Use the **Docling** node from the node palette.
 
@@ -55,7 +64,7 @@ custom/
 
 ## Environment
 
-- `DOCLING_API_URL` — optional default used in the credential template expression for **Base URL**.
+- `DOCLING_API_URL` — optional default used in the credential template expression for **Base URL**. For the root [docker-compose.yml](../docker-compose.yml) stack, set this on the n8n container to `http://docling-server:5001` so credentials resolve correctly.
 
 ## API reference
 

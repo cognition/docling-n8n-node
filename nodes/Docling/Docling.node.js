@@ -304,7 +304,7 @@ function formatDoclingRequestError(err, diag) {
 		}
 		if (low.includes('not found') && !detail.includes('Task')) {
 			const urlHint = diag?.requestUrl ? ` Request URL was: ${diag.requestUrl}.` : '';
-			return `${combined} — Wrong path or host: use credential Base URL = service root only (e.g. http://docling:5001), no /v1 suffix.${urlHint}`;
+			return `${combined} — Wrong path or host: use credential Base URL = service root only (e.g. http://docling-server:5001), no /v1 suffix.${urlHint}`;
 		}
 		const urlHint = diag?.requestUrl ? ` Request URL: ${diag.requestUrl}.` : '';
 		return `${combined} — If the route should exist: Base URL must be the service root (no trailing /v1); this node posts to {base}/v1/convert/file.${urlHint}`;

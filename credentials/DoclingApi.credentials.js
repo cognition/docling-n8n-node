@@ -15,9 +15,9 @@ class DoclingApi {
 				name: 'baseUrl',
 				type: 'string',
 				default: '={{ $env.DOCLING_API_URL }}',
-				placeholder: 'http://docling:5001',
+				placeholder: 'http://docling-server:5001',
 				description:
-					'Docling Serve root URL only (no /v1 suffix — paths are appended automatically). No trailing slash. Default: DOCLING_API_URL from the n8n environment.',
+					'Docling Serve root URL only (no /v1 suffix — paths are appended automatically). No trailing slash. Use the Docker service name when n8n shares a network with temakwe/docling-server (e.g. docling-server:5001). Default: DOCLING_API_URL from the n8n environment.',
 				required: true,
 			},
 			{
